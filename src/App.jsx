@@ -1,20 +1,14 @@
 import { createSignal, onMount, For } from "solid-js";
-import { breweries, type Breweries } from "./breweries";
+import { breweries } from "./breweries";
 import { Footer } from "./footer";
-
 export const App = () => {
-  const [breweryList, setBreweryList] = createSignal<Breweries[]>([]);
-
-  const fetchBreweries = async () => {
-    setBreweryList(await breweries());
-  };
-
-  onMount(fetchBreweries);
-
-  const smallText = "text-gray-600 text-sm";
-
-  return (
-    <main class="bg-purple-400">
+    const [breweryList, setBreweryList] = createSignal([]);
+    const fetchBreweries = async () => {
+        setBreweryList(await breweries());
+    };
+    onMount(fetchBreweries);
+    const smallText = "text-gray-600 text-sm";
+    return (<main class="bg-purple-400">
       <h1 class="text-3xl text-blue-900 text-center py-6 underline">
         List of Breweries
       </h1>
@@ -22,8 +16,7 @@ export const App = () => {
       <section class="grid">
         <For each={breweryList()}>
           {(brewery) => {
-            return (
-              <div class="bg-white rounded p-3 m-4">
+            return (<div class="bg-white rounded p-3 m-4">
                 <h1 class="text-2xl text-blue-900">{brewery.name}</h1>
                 <h2 class="underline">{brewery.brewery_type}</h2>
                 <p class={smallText}>{brewery.street}</p>
@@ -32,12 +25,10 @@ export const App = () => {
                 <p class={smallText}>{brewery.country}</p>
                 <p class={smallText}>{brewery.phone}</p>
                 <p class={smallText}>{brewery.website_url}</p>
-              </div>
-            );
-          }}
+              </div>);
+        }}
         </For>
       </section>
       <Footer />
-    </main>
-  );
+    </main>);
 };
