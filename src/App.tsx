@@ -1,5 +1,5 @@
-import { createSignal, onMount, For } from "solid-js";
-import { breweries, type Breweries } from "./breweries";
+import { createSignal, For, onMount } from "solid-js";
+import { type Breweries, breweries } from "./breweries";
 import { Footer } from "./footer";
 
 export const App = () => {
